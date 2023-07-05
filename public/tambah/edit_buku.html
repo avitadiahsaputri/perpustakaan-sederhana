@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../properti CSS/dasboard.css">
+    <link rel="stylesheet" href="../properti CSS/pinjam.css">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="../image/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Perpustakaan</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="../dasboard/dasboard.html">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dahsboard</span>
+                    </a></li>
+                <li><a href="../dasboard/dasanggota.html">
+                        <i class="uil uil-users-alt"></i>
+                        <span class="link-name">Anggota</span>
+                    </a></li>
+                <li><a href="../dasboard/dasbuku.html">
+                        <i class="uil uil-books"></i>
+                        <span class="link-name">Katalog Buku</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="../login/index.html">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <!-- <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div> -->
+
+            <img src="../image/propil.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Data Buku</span>
+                </div>
+                <div id="example">
+                    <div class="form buku">
+                        <form action="" name="buku">
+                            <div class="field">
+
+
+                                <div class="input-field">
+                                    <label>Nama Buku</label>
+                                    <input type="text" name="namaBuku" placeholder="Silahkan Masukan Nama Buku"
+                                        required>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Jenis Buku</label>
+                                    <select name="jenisBuku">
+                                        <option disabled selected>pilih katagori</option>
+                                        <option value="Novel">Novel</option>
+                                        <option value="Fiksi">fiksi</option>
+                                        <option value="Komik">Komik</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Pengarang</label>
+                                    <input type="text" name="pengarang" placeholder=" Nama Pengarang Buku" required>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>penerbit</label>
+                                    <input type="text" name="penerbit" placeholder=" Penerbit" required>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Tahun terbit</label>
+                                    <input type="year" name="tahunTerbit" placeholder=" Tahun Terbit" required>
+                                </div>
+                            </div>
+                            <!-- <div class="modal-footer">
+                            <button  class="btn btn-primary">Submit</button>
+                        </div>        -->
+                            <div class="button">
+                                <div class="backBtn">
+                                    <i class="uil uil-navigator"></i>
+                                    <button class="btnText">Submit</button>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <script>
+                const searchParams = new URLSearchParams(location.search);
+
+                async function buku() {
+                    const res = await fetch(`/api/buku/${searchParams.get("buku")}`, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("token")}`
+
+                        }
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    document.buku.namaBuku.value = data.judul_buku;
+                    document.buku.jenisBuku.value = data.kategori;
+                    document.buku.pengarang.value = data.pengarang;
+                    document.buku.penerbit.value = data.penerbit;
+                    document.buku.tahunTerbit.value = data.tahun_terbit;
+
+                }
+                document.buku.onsubmit = async (e) => {
+                    e.preventDefault();
+                    fetch(`/api/buku/${searchParams.get("buku")}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+
+                            nama: document.buku.namaBuku.value,
+                            kategori: document.buku.jenisBuku.value,
+                            pengarang: document.buku.pengarang.value,
+                            penerbit: document.buku.penerbit.value,
+                            tahun: document.buku.tahunTerbit.value,
+                        }),
+                    });
+                    location.href = "../dasboard/dasbuku.html";
+                }
+
+
+                buku();
+
+            </script>
+</body>
+
+</html>

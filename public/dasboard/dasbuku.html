@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../properti CSS/dasboard.css">
+    <link rel="stylesheet" href="../properti CSS/pinjam.css">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="../image/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Perpustakaan</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="dasboard.html">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dahsboard</span>
+                    </a></li>
+                <li><a href="dasanggota.html">
+                        <i class="uil uil-users-alt"></i>
+                        <span class="link-name">Anggota</span>
+                    </a></li>
+                <li><a href="dasbuku.html">
+                        <i class="uil uil-books"></i>
+                        <span class="link-name">Katalog Buku</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="../login/index.html">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <!-- <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div> -->
+
+            <img src="../image/propil.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-book-open"></i>
+                    <span class="text">Data Buku</span>
+                </div>
+                <form class="id">
+                    <div class="form buku">
+                        <table class="container" id="example"> <!--menggunakan datatable client side-->
+                            <tr class="data-title">
+                                <th>No</th>
+                                <th>Nama Buku</th>
+                                <th>Pengarang</th>
+                                <th>Penerbit</th>
+                                <th>katagori</th>
+                                <th>Tahun terbit</th>
+                                <th colspan="2">Action</th>
+                            </tr>
+                        </table>
+                        <div class="buttons">
+                            <div class="backBtn">
+                                <button> <a href="../tambah/tam_buku.html">add data</a></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+    </section>
+    <script src="../javascript/dasboard.js"></script>
+    <script src="../javascript/buku.js"></script>
+
+</body>
+
+</html>

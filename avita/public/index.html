@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login dan registrasi</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="Box">
+      <div class="botton-box">
+        <div id="t-btn"></div>
+        <button class="btn" onclick="loginn()">Login</button>
+        <button class="btn" onclick="registrasii()">Registrasi</button>
+      </div>
+      <form id="login" class="input" name="login">
+        <input
+          id="user"
+          type="text"
+          class="t-input"
+          placeholder="user id"
+          name="username"
+          required
+        />
+        <input
+          id="password"
+          type="password"
+          class="t-input"
+          placeholder="enter password"
+          name="password"
+          required
+        />
+        <input
+          type="checkbox"
+          class="check-box"
+          placeholder="user box"
+          required
+        />
+        <span>remember password</span>
+        <button type="submit" class="submit-btn">login</button>
+      </form>
+      <form id="regrister" class="input">
+        <input
+          id="email"
+          type="text"
+          class="t-input"
+          placeholder="masukan email"
+          required
+        />
+        <input
+          id="userr"
+          type="text"
+          class="t-input"
+          placeholder="username"
+          required
+        />
+        <input
+          id="passwordd"
+          type="text"
+          class="t-input"
+          placeholder="password"
+          required
+        />
+        <input
+          type="checkbox"
+          class="check-box"
+          placeholder="user id"
+          required
+        />
+        <span>Menerima persyaratan</span>
+        <button class="submit-btn">registrasi</button>
+      </form>
+    </div>
+    <script type="text/javascript">
+      document.login.onsubmit = async (e) => {
+        e.preventDefault();
+        const username = document.getElementById("user").value;
+        const password = document.getElementById("password").value;
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user: document.getElementById("user").value, //document.login.username.value,
+            pass: document.getElementById("password").value //document.login.password.value,
+          }),
+        });
+        if (response.ok) {
+          const token = await response.text();
+          localStorage.setItem("token", token);
+        //  console.log("dsadsadsa");
+          location.href = "/dasboard";
+        } else {
+          const message = await response.text();
+          alert(message);
+        }
+      };
+      document.getElementById("regrister").onsubmit = async (e) => {
+        e.preventDefault();
+        fetch("/api/registrasi",{
+          method :"POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userr:document.getElementById("userr").value,
+            pass:document.getElementById("passwordd").value,
+            email:document.getElementById("email").value
+          })
+        })
+      console.log("beehasil");
+      }
+
+      const x = document.getElementById("login");
+      const y = document.getElementById("regrister");
+      const z = document.getElementById("t-btn");
+
+      function registrasii() {
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+      }
+      function loginn() {
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0px";
+      }
+    </script>
+  </body>
+</html>

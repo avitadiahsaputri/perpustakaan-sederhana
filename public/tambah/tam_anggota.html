@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../properti CSS/dasboard.css">
+    <link rel="stylesheet" href="../properti CSS/pinjam.css">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="../image/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Perpustakaan</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="../dasboard/dasboard.html">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dahsboard</span>
+                    </a></li>
+                <li><a href="../dasboard/dasanggota.html">
+                        <i class="uil uil-users-alt"></i>
+                        <span class="link-name">Anggota</span>
+                    </a></li>
+                <li><a href="../dasboard/dasbuku.html">
+                        <i class="uil uil-books"></i>
+                        <span class="link-name">Katalog Buku</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="../login/index.html">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <img src="../image/propil.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Data Anggota</span>
+                </div>
+                <form action="" name="anngota">
+                    <div id="example">
+                        <div class="form buku">
+                            <div class="field">
+                                <div class="input-field">
+                                    <label>id Anggota</label>
+                                    <input type="text" name="kode" placeholder="Silahkan Masukan id Anggota" required>
+                                </div>
+                                <div class="input-field">
+                                    <label>Nama Anggota</label>
+                                    <input type="text" name="namaAnggota" placeholder="Silahkan Masukan Nama Anggota "
+                                        required>
+                                </div>
+                                <div class="input-field">
+                                    <label>Jenis Kelamin</label>
+                                    <select name="jenisKlm">
+                                        <option>jenis kelamin</option>
+                                        <option value="Laki">laki-laki</option>
+                                        <option value="perempuan">perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label>TTL</label>
+                                    <input type="text" name="t_tanggalLahir" placeholder="Tempat,tanggal Lahir"
+                                        required>
+                                </div>
+                                <div class="input-field">
+                                    <label>Alamat</label>
+                                    <input type="text" name="alamat" placeholder="Alamat" required>
+                                </div>
+                                <div class="input-field">
+                                    <label>No_telpn</label>
+                                    <input type="text" name="tlpn" placeholder="No telpon" required>
+                                </div>
+                            </div>
+
+                            <div class="buttons">
+                                <div class="backBtn">
+                                    <i class="uil uil-navigator"></i>
+                                    <button>Add</button>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+
+        <script src="../javascript/dasboard.js"></script>
+        <script>
+            document.anngota.onsubmit = (e) => {
+                e.preventDefault();
+                console.log("dsadhasuihdaiu");
+                console.log(document.anngota.kode.value);
+                fetch("/api/anggota", {
+                    method: "POST",
+                    headers: {
+
+                        "Content-Type": "application/json",
+
+                    }, body: JSON.stringify({
+                        id: document.anngota.kode.value,
+                        nama: document.anngota.namaAnggota.value,
+                        jenisKlm: document.anngota.jenisKlm.value,
+                        tgl: document.anngota.t_tanggalLahir.value,
+                        alamat: document.anngota.alamat.value,
+                        telepon: document.anngota.tlpn.value,
+                    })
+                });
+                location.href = "../dasboard/dasanggota.html";
+            }
+
+        </script>
+</body>
+
+</html>

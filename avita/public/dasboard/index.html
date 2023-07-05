@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>musical</title>
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="das.css">
+    <link rel="stylesheet" type="text/css" href="song.css">
+
+    <!--boxicons-->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+    <!--sidebar-->
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <div class="ring"> <!--ringnya tombol kembali kehalaman awal -->
+                    <a href="index.html" target="_blank" title="back">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+            <div class="text header-text">
+                <span class="nama">welcome</span>
+                <span class="profession">m u s i c a l</span>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header> 
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">   
+                            <i class='bx bx-search icon'></i>
+                            <input type="search " placeholder="search...">
+                </li>
+                <ul class="menu-link">
+                    <li class="nav-link">     
+                        <a href="./index1.html">
+                            <i class='bx bx-home icon'></i>
+                            <span class="text nav-taxt">H o m e</span>
+                        </a>
+                    </li>  
+                    <li class="nav-link">     
+                        <a href="./index2.html" target="_blank">
+                            <i class='bx bxs-music icon'></i>
+                            <span class="text nav-taxt">library</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">     
+                        <a href="#">
+                            <i class='bx bxs-plus-square icon'></i>
+                            <span class="text nav-taxt">Create playlist</span>
+                        </a>
+                    </li> 
+            </div>
+            <hr>
+            <div class="bottom-content">
+                <!-- <li class="">    -->
+                <li class="mode">     
+                    <div class="moon-sun">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Drak mode</span>
+                    
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <div class="home">
+        <div class="card">
+            <div class="text"><h2>album</h2></div>
+            <div class="main-col">
+                <div class="output"> 
+                </div>
+            </div>
+        </div>
+            <div class="text1"><h2>songs</h2></div>
+            <div class="main-col">
+                <div class="song"> 
+                </div>
+            </div> 
+            <div class="text2"><h2>playlist</h2></div>
+            <div class="main-col">
+                <div class="playlist"> 
+                </div>
+            </div>
+            <div class="text3"><h2>show</h2></div>
+        <div class="main-col">
+            <div class="show"> 
+            </div>
+        </div>
+    </div>
+
+<!-- tombol musik -->
+     <div class="player">
+        <div class="player_artis">
+
+        </div>
+        <div class="player_control">
+            <div class="player_buttom">
+                <a href=""><i class='bx bx-rewind'></i></a>
+                <a style="display: none;" id="pauseBtn" href="#"><i class='bx bx-pause'></i></a>
+                <a id="playbtn" href="#"><i class='bx bx-play'></i></a>
+                <a href=""><i class='bx bx-fast-forward'></i></a>   
+            </div>
+            <div class="player_control_progress">
+                <div class="player_control_progress2">
+                </div>
+            </div>
+        </div> 
+     </div>
+     <audio id="audioplayer" controls="">
+
+     </audio>
+
+    <script src="das.js"></script>
+    <script src="index1.js"></script>
+    <script>
+
+        var audioPlayer =document.getElementById('audioplayer')
+        var loaded = false
+
+        var playBtn = document.getElementById('playBtn');
+        var pauseBtn = document.getElementById('pauseBtn');
+
+         pauseBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+                 
+              playBtn.style.display = 'inline';
+              pauseBtn.style.display = 'none';
+
+              return false;  
+         })
+
+         const playSong = (file) => {
+            
+            if(loaded == false){
+                audioplayer.innerHTML =`<source src="`+file+`" type="audio/mp3" />`;
+                loaded = true
+            }
+            audioplayer.play();
+
+            playbtn.style.display ="none";
+            pauseBtn.style.display ="inline";
+        }
+
+    </script>
+  
+</body>
+</html>
